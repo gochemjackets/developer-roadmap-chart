@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <title>Vis Network | Node Styles | Groups</title>
+
+    <style>
+        body {
+            color: #d35330;
+            font: 12pt arial;
+            background-color: transparent;
+        }
+
+        #mynetwork {
+            width: 800px;
+            height: 800px;
+            border: 1px solid #444444;
+            background-color: transparent;
+        }
+    </style>
+
+    <script type="text/javascript" src="vis-network.min.js"></script>
+</head>
+
+<body>
+
+<div id="mynetwork"></div>
+<script type="text/javascript">
+    var color = 'gray';
+    var len = undefined;
+    var nodes = [{id: 0, label: "Internet", group: 0},
+        {id: 1, label: "How does the internet work?", group: 0},
+        {id: 2, label: "What is HTTP", group: 0},
+        {id: 3, label: "Browsers and how they work", group: 0},
+        {id: 4, label: 'DNS and how it works?', group: 0},
+        {id: 5, label: 'What is Domain Name?', group: 0},
+        {id: 6, label: 'What is hosting?', group: 0},
+        {id: 7, label: "HTML", group: 1},
+        {id: 8, label: "CSS", group: 2},
+        {id: 9, label: "JavaScript", group: 1}
+    ];
+    var edges = [{from: 0, to: 1},
+        {from: 0, to: 2},
+        {from: 0, to: 3},
+        {from: 0, to: 4},
+        {from: 0, to: 5},
+        {from: 0, to: 6},
+        {from: 0, to: 7},
+        {from: 0, to: 8}
+    ]
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {
+        nodes: {
+            shape: 'box',
+            size: 10,
+            font: {
+                size: 18,
+                color: '#222222'
+            },
+            borderWidth: 2
+        },
+        edges: {
+            width: 2
+        }
+    };
+    network = new vis.Network(container, data, options);
+</script>
+</body>
+</html>
