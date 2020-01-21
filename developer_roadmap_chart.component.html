@@ -26,28 +26,16 @@
 <script type="text/javascript">
     var color = 'gray';
     var len = undefined;
-    var frontendjson = [
-        {label: "Internet",
-            group: 0,
-            parent: true,
-            children: [
-                'How does the internet work?',
-                'What is HTTP?',
-                'Browsers and how they work?',
-                'DNS and how it works?',
-                'What is Domain Name?',
-                'What is hosting?'
-        ]
-        }];
-    var nodes = [{id: 0, label: "Internet", group: 0, parent: true},
-        {id: 1, label: "How does the internet work?", group: 0},
-        {id: 2, label: "What is HTTP", group: 0},
-        {id: 3, label: "Browsers and how they work", group: 0},
-        {id: 4, label: 'DNS and how it works?', group: 0},
-        {id: 5, label: 'What is Domain Name?', group: 0},
-        {id: 6, label: 'What is hosting?', group: 0},
 
-        {id: 7, label: "HTML", group: 1, parent: true},
+    var nodes = [{id: 0, label: "Internet", group: 0, parent: true, color:'#f9ff32'},
+        {id: 1, label: "How does the internet work?", group: 0, color:'#f9df95'},
+        {id: 2, label: "What is HTTP", group: 0, color:'#f9df95'},
+        {id: 3, label: "Browsers and how they work", group: 0, color:'#f9df95'},
+        {id: 4, label: 'DNS and how it works?', group: 0, color:'#f9df95'},
+        {id: 5, label: 'What is Domain Name?', group: 0, color:'#f9df95'},
+        {id: 6, label: 'What is hosting?', group: 0, color:'#f9df95'},
+
+        {id: 7, label: "HTML", group: 1, parent: true, color:'#f9ff32'},
         {id: 8, label: "Learn the basics", group: 1},
         {id: 9, label: "Writing Semantic HTML", group: 1},
         {id: 10, label: "Forms and Validations", group: 1},
@@ -55,41 +43,49 @@
         {id: 12, label: "Accessibility", group: 1},
         {id: 13, label: "SEO Basics", group: 1},
 
-        {id: 14, label: "CSS", group: 2, parent: true},
+        {id: 14, label: "CSS", group: 2, parent: true, color:'#f9ff32'},
         {id: 15, label: "Learn the basics", group: 2},
         {id: 16, label: "Making Layouts", group: 2},
         {id: 17, label: "Responsive design and Media Queries", group: 2},
 
-        {id: 18, label: "Floats", group: 3, parent: true},
+        {id: 18, label: "Floats", group: 3, parent: true, color:'#f9ff32'},
         {id: 19, label: "Positioning", group: 3},
         {id: 20, label: "Display", group: 3},
         {id: 21, label: "Box Model", group: 3},
         {id: 22, label: "CSS Grid", group: 3},
         {id: 23, label: "Flex Box", group: 3},
 
-        {id: 24, label: "JavaScript", group: 4, parent: true},
+        {id: 24, label: "JavaScript", group: 4, parent: true, color:'#f9ff32'},
         {id: 25, label: "Syntax and Basic Construct", group: 4},
         {id: 26, label: "Learn Dom Manipulation", group: 4},
         {id: 27, label: "Learn Fetch API / Ajax(XHR)", group: 4},
         {id: 28, label: "ES6+ and modular JavaScript", group: 4}
     ];
-
-
     var edges = [];
+    var globalEdgeIds = [];
     for (let i =0; i < nodes.length; i++) {
         // start edge
-        if (nodes[i].hasOwnProperty('parent') && nodes[i]['parent'] == true) {
-            var group = nodes[i].group;
+        if (nodes[i].hasOwnProperty('parent')) {
+            globalEdgeIds.push(nodes[i].id);
             for (let j =0; j < nodes.length; j++) {
-
                 if (nodes[i].group == nodes[j].group & nodes[i].id != nodes[j].id) {
                     var edge = {};
-                    edge['from'] = group;
+                    edge['from'] = nodes[i].id;
+                    edge['dashes'] = true;
                     edge['to'] = nodes[j].id;
-                    console.info('edge', edge)
                     edges.push(edge);
                 }
             }
+        }
+    }
+
+    for (let i = 0; i < globalEdgeIds.length; i++) {
+        var edge = {};
+        if (i + 1 < globalEdgeIds.length) {
+            edge['length'] = 30;
+            edge['from'] = globalEdgeIds[i];
+            edge['to'] = globalEdgeIds[i + 1];
+            edges.push(edge);
         }
     }
 
@@ -101,6 +97,7 @@
     };
     var options = {
         nodes: {
+            margin: 10,
             shape: 'box',
             size: 10,
             font: {
