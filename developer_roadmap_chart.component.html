@@ -25,6 +25,9 @@
 <div id="roadmapnetwork"></div>
 <script type="text/javascript">
     var color = 'gray';
+
+
+    var colorList = {global: '#f9ff32', children: '#f9df95'};
     var len = undefined;
 
     var nodes = [{id: 0, label: "Internet", group: 0, parent: true, color:'#f9ff32'},
@@ -59,7 +62,19 @@
         {id: 25, label: "Syntax and Basic Construct", group: 4},
         {id: 26, label: "Learn Dom Manipulation", group: 4},
         {id: 27, label: "Learn Fetch API / Ajax(XHR)", group: 4},
-        {id: 28, label: "ES6+ and modular JavaScript", group: 4}
+        {id: 28, label: "ES6+ and modular JavaScript", group: 4},
+
+        {id: 29, label: "Version Control Systems\n what are they and why you should use one", group: 5, parent: true, color:'#f9ff32'},
+
+        {id: 30, label: "Basic Usage of Git", group: 6, parent: true, color:'#f9ff32'},
+
+        {id: 31, label: "Repo hosting services \n Create account and Learn to use Github", group: 7, parent: true, color:'#f9ff32'},
+
+        {id: 32, label: "Github", group: 7, parent: true, color:'#f9ff32'},
+        {id: 33, label: "Gitlab", group: 7, parent: true, color:'#d4d4d4'},
+        {id: 34, label: "Bitbucket", group: 7, parent: true, color:'#d4d4d4'},
+
+
     ];
     var edges = [];
     var globalEdgeIds = [];
